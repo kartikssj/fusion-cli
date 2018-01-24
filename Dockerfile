@@ -1,15 +1,6 @@
-FROM node:8.9.0
+FROM uber/web-base-image:1.0.2@sha256:50825281ac5f6044ab318f37f57073e007afd6d2e25f91ac8a4448aa8b9f28b2
 
 WORKDIR /fusion-cli
-
-RUN apt-get update && apt-get install -y wget --no-install-recommends \
-  && wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - \
-  && sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list' \
-  && apt-get update \
-  && apt-get install -y google-chrome-unstable \
-  --no-install-recommends \
-  && rm -rf /var/lib/apt/lists/* \
-  && rm -rf /src/*.deb
 
 COPY package.json yarn.lock /fusion-cli/
 
